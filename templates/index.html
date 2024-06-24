@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Builder</title>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+
+<body>
+    <h1 class="center">JSON Builder</h1>
+    <div class="main-div">
+        <div id="form-div">
+            <form hx-post="/add" hx-target="#json-display" hx-swap="innerHTML">
+                <input type="text" name="key" placeholder="Key" required>
+                <input type="text" name="value" placeholder="Value" required>
+                <button type="submit">Add to JSON</button>
+            </form>
+        </div>
+        <div id="json-display">
+            {% include 'json-display.html' %}
+        </div>
+    </div>
+</body>
+
+</html>
