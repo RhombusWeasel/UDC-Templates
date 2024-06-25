@@ -1,0 +1,44 @@
+{
+  "Global": {
+    "ProcessName": {
+      "type": "string",
+      "value": "new-process"
+    },
+    "ServiceMonitorCredsFile": {
+      "type": "string",
+      "value": "serviceMonitorCreds.xml"
+    },
+    "AlertEmailTo": {
+      "type": "string",
+      "value": ""
+    },
+    "AlertEmailUrlCredsFile": {
+      "type": "string",
+      "value": "alertEmailCreds.xml"
+    },
+    "ServiceMonitorEnabled": {
+      "type": "boolean",
+      "value": true
+    },
+    "AlertEmailLevel": {
+      "type": "integer",
+      "value": 1
+    }
+  },
+  "Ingress": {
+    "Service": {
+      "type": "string",
+      "value": "new-service"
+    },
+    "ServiceType": {
+      "type": "list",
+      "value": "API/SQL",
+      "options": [
+        "API/SQL",
+        "Local/SQL",
+        "Azure/CosmosDB"
+      ]
+    }
+  },
+  "Egress": {}
+}

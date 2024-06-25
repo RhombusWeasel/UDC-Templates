@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Builder</title>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+
+<body>
+    <h1 class="center">JSON Builder</h1>
+    <div class="main-div">
+        <div id="conf-div">
+            <h2>Global <button class="btn primary" hx-get="/template/Global" hx-target="body" hx-swap="beforeend">+
+                </button>
+            </h2>
+            <div id="global-output">
+                {% with data = json_data.Global %}
+                {% include 'dynamic-table.html' %}
+                {% endwith %}
+            </div>
+            <h2 class="center">Ingress <button class="btn primary" hx-get="/template/Ingress" hx-target="body"
+                    hx-swap="beforeend">+</button></h2>
+            <div id="ingress-output">
+                {% with data = json_data.Ingress %}
+                {% include 'dynamic-table.html' %}
+                {% endwith %}
+            </div>
+        </div>
+        <div id="json-display">
+            {% include 'json-display.html' %}
+        </div>
+    </div>
+</body>
+
+</html>
