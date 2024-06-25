@@ -1,0 +1,37 @@
+{% if modal %}
+<div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
+  <div class="modal-underlay" _="on click trigger closeModal"></div>
+  <div class="modal-content">
+    {% endif %}
+    <div class="">
+      <form hx-post="/submit/{{ section }}" hx-swap="outerHTML">
+        <h2 class="text-xl font-semibold mt-6 mb-4">{{ section }}</h2>
+        {% for key, value in config.items() %}
+        <div class="">
+          <label for="{{ key }}" class="">{{ key }}</label>
+          {% if value.type == "string" %}
+          <input type="text" id="{{ key }}" name="{{ key }}" value="{{ value.value }}" class="">
+          {% elif value.type == "boolean" %}
+          <input type="checkbox" id="{{ key }}" name="{{ key }}" {% if value.value %}checked{% endif %} class="">
+          {% elif value.type == "integer" %}
+          <input type="number" id="{{ key }}" name="{{ key }}" value="{{ value.value }}" class="">
+          {% elif value.type == "list" %}
+          <select id="{{ key }}" name="{{ key }}" class="">
+            {% for option in value.options %}
+            <option value="{{ option }}" {% if option==value.value %}selected{% endif %}>{{ option }}</option>
+            {% endfor %}
+          </select>
+          {% endif %}
+        </div>
+        {% endfor %}
+        {% if modal %}
+        <button type="submit" class="" hx-post="/submit/{{ section }}" hx-target="body" hx-swap="outerHTML"
+          _="on click trigger closeModal">Submit</button>
+        {% endif %}
+      </form>
+    </div>
+    {% if modal %}
+    <button class="btn danger" _="on click trigger closeModal">Close</button>
+  </div>
+</div>
+{% endif %}
